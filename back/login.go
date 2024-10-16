@@ -13,8 +13,8 @@ import (
 // Spotify APIのOAuth2設定
 var spotifyConfig = &oauth2.Config{
 	
-	ClientID:"ca73b6c165ac4f15a563d16bb125f62b",// Spotify Developerから取得
-	ClientSecret: "10af7198941941ff815a9cbe13f792c5",    // Spotify Developerから取得
+	ClientID: "",// Spotify Developerから取得
+	ClientSecret:"",    // Spotify Developerから取得
 	RedirectURL:  "http://localhost:8080/callback", // リダイレクトURL
 	Endpoint:     spotify.Endpoint,        // Spotify用のOAuth2エンドポイント
 	Scopes: []string{

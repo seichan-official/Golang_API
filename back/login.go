@@ -15,6 +15,7 @@ var spotifyConfig = &oauth2.Config{
 	
 	ClientID:"",// Spotify Developerから取得
 	ClientSecret: "",    // Spotify Developerから取得
+
 	RedirectURL:  "http://localhost:8080/callback", // リダイレクトURL
 	Endpoint:     spotify.Endpoint,        // Spotify用のOAuth2エンドポイント
 	Scopes: []string{
@@ -58,7 +59,3 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Access Token: %s\n", token.AccessToken)
 }
-
-
-
-

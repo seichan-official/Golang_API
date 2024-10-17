@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/spotify"
@@ -13,8 +14,8 @@ import (
 // Spotify APIのOAuth2設定
 var spotifyConfig = &oauth2.Config{
 	
-	ClientID:"",// Spotify Developerから取得
-	ClientSecret: "",    // Spotify Developerから取得
+	ClientID:os.Getenv("client_id"),// Spotify Developerから取得
+	ClientSecret: os.Getenv("seacret_id"),    // Spotify Developerから取得
 
 
 	RedirectURL:  "http://localhost:8080/", // リダイレクトURL

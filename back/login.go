@@ -13,8 +13,8 @@ import (
 // Spotify APIのOAuth2設定
 var spotifyConfig = &oauth2.Config{
 	
-	ClientID:"",// Spotify Developerから取得
-	ClientSecret: "",    // Spotify Developerから取得
+	ClientID:"ca73b6c165ac4f15a563d16bb125f62b",// Spotify Developerから取得
+	ClientSecret: "10af7198941941ff815a9cbe13f792c5",    // Spotify Developerから取得
 
 	RedirectURL:  "http://localhost:8080/callback", // リダイレクトURL
 	Endpoint:     spotify.Endpoint,        // Spotify用のOAuth2エンドポイント
@@ -28,6 +28,7 @@ var oauthStateString = "random"
 // メイン関数でサーバーを開始
 func main() {
 	http.HandleFunc("/login", handleLogin)
+	http.HandleFunc("/logout", handleLogout)
 	http.HandleFunc("/callback", handleCallback)
 
 	fmt.Println("Server started at http://localhost:8080/")
@@ -37,14 +38,20 @@ func main() {
 // /loginエンドポイント: Spotifyの認証ページにリダイレクト
 func handleLogin(w http.ResponseWriter, r *http.Request) {
 	url := spotifyConfig.AuthCodeURL(oauthStateString)
+	fmt.Println(url)
 	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 }
 
 // /callbackエンドポイント: 認証後に呼び出される
 func handleCallback(w http.ResponseWriter, r *http.Request) {
 	state := r.FormValue("state")
+	fmt.Println("aaaa")
 	if state != oauthStateString {
+		fmt.Println(state)
+		fmt.Println(oauthStateString)
+
 		log.Printf("invalid oauth state, expected '%s', got '%s'\n", oauthStateString, state)
+		fmt.Println("aaa")
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
 	}
@@ -59,3 +66,4 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Access Token: %s\n", token.AccessToken)
 }
+

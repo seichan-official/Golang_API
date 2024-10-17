@@ -16,7 +16,8 @@ var spotifyConfig = &oauth2.Config{
 	ClientID:"",// Spotify Developerから取得
 	ClientSecret: "",    // Spotify Developerから取得
 
-	RedirectURL:  "http://localhost:8080/callback", // リダイレクトURL
+
+	RedirectURL:  "http://localhost:8080/", // リダイレクトURL
 	Endpoint:     spotify.Endpoint,        // Spotify用のOAuth2エンドポイント
 	Scopes: []string{
 		"user-read-private", "user-read-email", // 必要なスコープを指定
@@ -25,11 +26,11 @@ var spotifyConfig = &oauth2.Config{
 
 var oauthStateString = "random"
 
+
 // メイン関数でサーバーを開始
 func main() {
 	http.HandleFunc("/login", handleLogin)
-	http.HandleFunc("/logout", handleLogout)
-	http.HandleFunc("/callback", handleCallback)
+	http.HandleFunc("/", handleCallback)
 
 	fmt.Println("Server started at http://localhost:8080/")
 	log.Fatal(http.ListenAndServe(":8080", nil))
@@ -38,7 +39,6 @@ func main() {
 // /loginエンドポイント: Spotifyの認証ページにリダイレクト
 func handleLogin(w http.ResponseWriter, r *http.Request) {
 	url := spotifyConfig.AuthCodeURL(oauthStateString)
-	fmt.Println(url)
 	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 }
 
@@ -58,12 +58,14 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 
 	code := r.FormValue("code")
 	token, err := spotifyConfig.Exchange(context.Background(), code)
+	fmt.Println("token",token)
 	if err != nil {
 		log.Printf("Code exchange failed with '%s'\n", err)
-		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "http://localhost:8080/", http.StatusTemporaryRedirect)
 		return
 	}
 
 	fmt.Fprintf(w, "Access Token: %s\n", token.AccessToken)
 }
+
 

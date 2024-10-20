@@ -14,7 +14,7 @@ const HomePage = () => {
           <p>
             in  Booksers.
           </p>
-          <p>You can share and exchange your opinions, impressions, and emotions</p>
+          <p>aaa</p>
           <p>about various books!</p>
           <div className="btn-wrapper col-10 mx-auto">
             <div className="row">

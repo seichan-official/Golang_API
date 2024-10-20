@@ -11,11 +11,8 @@ const HomePage = () => {
           <h1>
             Welcome to SpoTube!!
           </h1>
-          <p>
-            in  Booksers.
-          </p>
           <p>aaa</p>
-          <p>about various books!</p>
+          <p>aaaa</p>
           <div className="btn-wrapper col-10 mx-auto">
             <div className="row">
               <a

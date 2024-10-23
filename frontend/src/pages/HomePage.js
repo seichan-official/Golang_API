@@ -5,8 +5,8 @@ const HomePage = () => {
 
 
   return (
-    <div className="container">
-      <div className="row">
+        <div className="container">
+        <div className="row">
         <div className="mx-auto">
           <h1>
             Welcome to SpoTube!!
@@ -17,16 +17,16 @@ const HomePage = () => {
             <div className="row">
               <a
                 href={newUserSessionPath}
-                className="btn btn-info btn-sm btn-block mb-3 sign_in"
-              >
+                className="btn btn-info btn-sm btn-block mb-3 sign_in" >
                 Log in
               </a>
             </div>
           </div>
         </div>
+       </div>
       </div>
-    </div>
-  );
+);
 };
+
 
 export default HomePage;

@@ -1,0 +1,154 @@
+openapi: 3.0.0
+info:
+  title: Spotube API
+  description: Spotifyの履歴をYouTubeのミュージックビデオに変換するアプリ用のAPI
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /api/spotify/login:
+    get:
+      summary: Spotifyログイン
+      description: SpotifyのOAuthログインプロセスを開始します
+      responses:
+        '200':
+          description: Spotifyのログインページにリダイレクトされます
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Spotifyのログインページにリダイレクトされました"
+
+  /api/spotify/history:
+    get:
+      summary: Spotifyのリスニング履歴取得
+      description: ユーザーのSpotifyのリスニング履歴を取得します
+      responses:
+        '200':
+          description: Spotifyのリスニング履歴の詳細
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpotifyHistoryResponse'
+
+  /api/youtube/search:
+    post:
+      summary: YouTubeでのミュージックビデオ検索
+      description: 指定されたクエリに基づいてYouTubeでミュージックビデオを検索します
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: YouTubeの検索結果のリスト
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+
+components:
+  schemas:
+    SpotifyHistoryResponse:
+      type: object
+      properties:
+        user_profile:
+          type: object
+          properties:
+            id:
+              type: string
+              description: ユーザーID
+              example: "user_12345"
+            display_name:
+              type: string
+              description: 表示名
+              example: "ユーザー名"
+            profile_image_url:
+              type: string
+              description: プロフィール画像URL
+              example: "https://example.com/user_profile_image.jpg"
+            country:
+              type: string
+              description: ユーザーの国
+              example: "JP"
+        recently_played_tracks:
+          type: array
+          items:
+            type: object
+            properties:
+              track_name:
+                type: string
+                description: 曲名
+                example: "曲名1"
+              album:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: アルバム名
+                    example: "アルバム名1"
+                  smallest_image_url:
+                    type: string
+                    description: アルバムの最も小さい画像URL
+                    example: "https://example.com/album_smallest_image.jpg"
+              artists:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: アーティスト名
+                      example: "アーティスト名1"
+                    spotify_url:
+                      type: string
+                      description: SpotifyのアーティストページURL
+                      example: "https://open.spotify.com/artist/123"
+                    smallest_image_url:
+                      type: string
+                      description: アーティストの最も小さい画像URL
+                      example: "https://example.com/artist_smallest_image.jpg"
+              youtube_search_query:
+                type: string
+                description: YouTubeでの検索クエリ
+                example: "曲名1 アーティスト名1 MV"
+    
+    SearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: YouTubeで検索するクエリ
+          example: "あいみょん 裸の心 Official Music Videoそ"
+    
+    SearchResult:
+      type: object
+      properties:
+        title:
+          type: string
+          description: 動画のタイトル
+          example: "楽曲タイトル"
+        video_url:
+          type: string
+          description: 動画のURL
+          example: "https://www.youtube.com/watch?v=example"
+        thumbnail:
+          type: string
+          description: 動画のサムネイルURL
+          example: "https://img.youtube.com/vi/example/0.jpg"
+        description:
+          type: string
+          description: 動画の概要
+          example: "これはサンプルのミュージックビデオの説明です。"
+        channel:
+          type: string
+          description: チャンネル名
+          example: "音楽チャンネル"

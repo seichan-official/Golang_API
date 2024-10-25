@@ -148,7 +148,7 @@ func ExtrackFromRecentPlayed(client *http.Client, body []byte)([]interface{}, er
 	for _, item := range items{
 		track := item.(map[string]interface{})["track"].(map[string]interface{})
 		album := track["album"].(map[string]interface{})
-		trackName := track["name"]
+		trackName := track["name"].(string)
 
 		images := album["images"].([]interface{})
 		albumImageUrl := ""
@@ -162,6 +162,7 @@ func ExtrackFromRecentPlayed(client *http.Client, body []byte)([]interface{}, er
 		albumName := album["name"].(string)
 		artists := album["artists"].([]interface{})
 		artistsData := []interface{}{}
+		youtube := trackName + "officialmusicvideo"
 		for _, artist := range artists{
 			artistMap := artist.(map[string]interface{})
 			urls := artistMap["external_urls"].(map[string]interface{})
@@ -174,6 +175,7 @@ func ExtrackFromRecentPlayed(client *http.Client, body []byte)([]interface{}, er
 				"spotify_url": spotifyUrl,
 				"smallest_image_url": artistImageUrl,
 			}
+			youtube = artistName + youtube
 			artistsData = append(artistsData, artistData)
 		}
 		trackData := map[string]interface{}{
@@ -184,6 +186,7 @@ func ExtrackFromRecentPlayed(client *http.Client, body []byte)([]interface{}, er
 			},
 			"artists": artistsData,
 			//Youtube検索クエリ
+			"youtube_search_query": youtube,
 		}
 		recentlyPlayedTracks = append(recentlyPlayedTracks, trackData)
 	}

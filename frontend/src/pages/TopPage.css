@@ -1,0 +1,42 @@
+/* 背景グラデーション */
+.top-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b, #9368d0);
+    position: relative;
+    text-align: center;
+  }
+  
+  /* メインのタイトル */
+  .main-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
+  
+  /* ハイライトされた文字 */
+  .highlight {
+    text-decoration: underline;
+  }
+  
+  /* コンサルティングリクエストボタン */
+  .consultation-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .consultation-btn:hover {
+    background-color: white;
+    color: #ff7e5f;
+  }
+  

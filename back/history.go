@@ -17,7 +17,7 @@ import (
 
 func HandleUserProfile(w http.ResponseWriter, r *http.Request){
 	if token == nil {
-		http.Redirect(w, r, "/login", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
 		return
 	}
 
@@ -25,13 +25,13 @@ func HandleUserProfile(w http.ResponseWriter, r *http.Request){
 	userProfile, err := GetUserProfile(client)
 	if err != nil {
 		log.Printf("Failed to get recently played tracks: %v\n", err)
-		http.Redirect(w, r, "/login", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
 		return
 	}
 	recentlyPlayedTracks, err := GetUserRecentPlayed(client)
 	if err != nil {
 		log.Printf("Failed to get recently played tracks: %v\n", err)
-		http.Redirect(w, r, "/login", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
 		return
 	}
 

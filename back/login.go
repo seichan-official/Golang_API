@@ -12,14 +12,18 @@ import (
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/spotify"
 
-	//"github.com/joho/godotenvs"
+	//"github.com/joho/godotenv"
 )
+
+err := godotenv.Load("./.env")
+if err != nil{
+	log.Fatalf("Error load env faile: %v", err)
+}
 
 // Spotify APIのOAuth2設定
 var spotifyConfig = &oauth2.Config{
 
-	ClientID: "90caf6f7db72486fa19da119eaedf214",// Spotify Developerから取得
-	ClientSecret: "1a16d2bdad2d467a9133b80cba0d7193",  
+
 
 	// ClientID:os.Getenv("client_id"),// Spotify Developerから取得
 	// ClientSecret: os.Getenv("seacret_id"),    // Spotify Developerから取得
@@ -41,9 +45,10 @@ var token *oauth2.Token
 // メイン関数でサーバーを開始
 func main() {
 
-	http.HandleFunc("/login", handleLogin)
+
+	http.HandleFunc("/api/spotify/login", handleLogin)
 	http.HandleFunc("/", handleCallback)
-	http.HandleFunc("/profile", HandleUserProfile)
+	http.HandleFunc("/api/spotify/history", HandleUserProfile)
 
 	fmt.Println("Server started at http://localhost:8080/")
 	log.Fatal(http.ListenAndServe(":8080", nil))
@@ -76,6 +81,6 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 	token = localToken
 	//client := spotifyConfig.Client(context.Background(), token)
 
-	http.Redirect(w, r, "/profile", http.StatusSeeOther)
+	http.Redirect(w, r, "/api/spotify/history", http.StatusSeeOther)
 
 }

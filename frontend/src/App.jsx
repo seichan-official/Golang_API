@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import TopPage from './pages/TopPage'; 
-import './pages/TopPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header';
+import TopPage from './pages/TopPage/TopPage'; 
+import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import MainPage from './pages/MainPage';
+import MainPage from './pages/MainPage/MainPage';
 
 const AppContent = () => {
   const location = useLocation();

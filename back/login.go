@@ -17,7 +17,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var err = godotenv.Load("./.env")
+var err = godotenv.Load("../.env")
 // if err != nil{
 // 	log.Fatalf("Error load env faile: %v", err)
 // }
@@ -28,10 +28,10 @@ var spotifyConfig = &oauth2.Config{
 
 
 	ClientID:os.Getenv("client_id"),// Spotify Developerから取得
-	ClientSecret: os.Getenv("seacret_id"),    // Spotify Developerから取得
+	ClientSecret: os.Getenv("secret_id"),    // Spotify Developerから取得
 
 
-	RedirectURL:  "http://localhost:8080/", // リダイレクトURL
+	RedirectURL:  "http://localhost:8080/callback", // リダイレクトURL
 	Endpoint:     spotify.Endpoint,        // Spotify用のOAuth2エンドポイント
 	Scopes: []string{
 		"user-read-private", "user-read-email",
@@ -50,7 +50,7 @@ func main() {
 
 
 	http.HandleFunc("/api/spotify/login", handleLogin)
-	http.HandleFunc("/", handleCallback)
+	http.HandleFunc("/callback", handleCallback)
 	http.HandleFunc("/api/spotify/history", HandleUserProfile)
 
 	fmt.Println("Server started at http://localhost:8080/")

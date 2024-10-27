@@ -38,7 +38,7 @@ paths:
   /api/youtube/search:
     post:
       summary: YouTubeでのミュージックビデオ検索
-      description: 指定されたクエリに基づいてYouTubeでミュージックビデオを検索します
+      description: 指定されたクエリに基づいてYouTubeでミュージックビデオを検索する
       requestBody:
         required: true
         content:
@@ -127,7 +127,7 @@ components:
         query:
           type: string
           description: YouTubeで検索するクエリ
-          example: "あいみょん 裸の心 Official Music Videoそ"
+          example: "あいみょん 裸の心 Official Music Video"
     
     SearchResult:
       type: object

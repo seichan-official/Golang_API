@@ -16,8 +16,14 @@ import (
 )
 
 func HandleUserProfile(w http.ResponseWriter, r *http.Request){
+	errormessage := map[string]string{
+		"message": "error",
+	}
+
 	if token == nil {
 		http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(errormessage)
 		return
 	}
 
@@ -26,12 +32,16 @@ func HandleUserProfile(w http.ResponseWriter, r *http.Request){
 	if err != nil {
 		log.Printf("Failed to get recently played tracks: %v\n", err)
 		http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(errormessage)
 		return
 	}
 	recentlyPlayedTracks, err := GetUserRecentPlayed(client)
 	if err != nil {
 		log.Printf("Failed to get recently played tracks: %v\n", err)
 		http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(errormessage)
 		return
 	}
 

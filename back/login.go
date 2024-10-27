@@ -5,28 +5,30 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	//"os"
-	// "io/ioutil"
-	
+	"os"
+	//"io/ioutil"
+	"crypto/rand"
+	//"encoding/base64" 
+	"encoding/json"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/spotify"
 
-	//"github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 )
 
-err := godotenv.Load("./.env")
-if err != nil{
-	log.Fatalf("Error load env faile: %v", err)
-}
+var err = godotenv.Load("./.env")
+// if err != nil{
+// 	log.Fatalf("Error load env faile: %v", err)
+// }
 
 // Spotify APIのOAuth2設定
 var spotifyConfig = &oauth2.Config{
 
 
 
-	// ClientID:os.Getenv("client_id"),// Spotify Developerから取得
-	// ClientSecret: os.Getenv("seacret_id"),    // Spotify Developerから取得
+	ClientID:os.Getenv("client_id"),// Spotify Developerから取得
+	ClientSecret: os.Getenv("seacret_id"),    // Spotify Developerから取得
 
 
 	RedirectURL:  "http://localhost:8080/", // リダイレクトURL
@@ -39,6 +41,7 @@ var spotifyConfig = &oauth2.Config{
 
 var oauthStateString = "random"
 var token *oauth2.Token
+var idToken = map[string]interface{}{}
 
 
 
@@ -79,8 +82,26 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	token = localToken
-	//client := spotifyConfig.Client(context.Background(), token)
+	rand, _ := randomString(10)
+	idToken[rand] = token
+	response := map[string]string{
+		"message": "認証に成功しました。",
+	}
+	w.Header().Set("Content-Type", "application/json")
 
-	http.Redirect(w, r, "/api/spotify/history", http.StatusSeeOther)
+	json.NewEncoder(w).Encode(response)
+}
 
+func randomString(n int) (string, error) {
+	const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	b := make([]byte, n)
+	if _, err := rand.Read(b); err != nil{
+		return "", err
+	}
+	var result string
+	for _, v := range b {
+        // index が letters の長さに収まるように調整
+		result += string(letters[int(v)%len(letters)])
+	}
+	return result, nil
 }

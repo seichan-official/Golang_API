@@ -73,7 +73,7 @@ func YouTubeSearchHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    apiKey := os.Getenv("youtube_api_key")
+    apiKey := os.Getenv("YOUTUBE_API_KEY")
     if apiKey == "" {
         http.Error(w, "API key not found in environment variables", http.StatusInternalServerError)
         return

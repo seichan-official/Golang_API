@@ -1,0 +1,41 @@
+{
+    "user_profile": {
+      "id": "user12345",
+      "display_name": "AimyonFan",
+      "profile_image_url": "https://example.com/profile_image.jpg",
+      "country": "JP"
+    },
+    "recently_played_tracks": [
+      {
+        "track_name": "マリーゴールド",
+        "album": {
+          "name": "瞬間的シックスセンス",
+          "smallest_image_url": "https://i.scdn.co/image/ab67616d00004851c12d785df5dbf2b15ec49504"
+        },
+        "artists": [
+          {
+            "name": "Aimyon",
+            "spotify_url": "https://open.spotify.com/artist/5kVZa4lFUmAQlBogl1fkd6",
+            "smallest_image_url": "https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5"
+          }
+        ],
+        "youtube_search_query": "マリーゴールド [Aimyon] Official Music Video"
+      },
+      {
+        "track_name": "ラッキーカラー",
+        "album": {
+          "name": "猫にジェラシー",
+          "smallest_image_url": "https://i.scdn.co/image/ab67616d00004851b751f744272d312fae1078ce"
+        },
+        "artists": [
+          {
+            "name": "Aimyon",
+            "spotify_url": "https://open.spotify.com/artist/5kVZa4lFUmAQlBogl1fkd6",
+            "smallest_image_url": "https://i.scdn.co/image/ab6761610000f17893db4a195c102e95153eb2e5"
+          }
+        ],
+        "youtube_search_query": "ラッキーカラー [Aimyon] Official Music Video"
+      }
+    ]
+  }
+  

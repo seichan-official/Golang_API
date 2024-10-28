@@ -1,12 +1,15 @@
 import React from 'react';
 import './TopPage.css'; 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const TopPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate('/api/spotify/login');
+  // const handleLogin = () => {
+  //   navigate('/api/spotify/login');
+  // }
+  const redirectLogin = () => {
+    window.location.href = "http://localhost:8080/api/spotify/login"
   }
   
   return (
@@ -15,7 +18,7 @@ const TopPage = () => {
         <h1 className="main-title">
            <span className="highlight">Welcome To SpoTube!</span> 
         </h1>
-          <button onClick={handleLogin}>
+          <button onClick={redirectLogin}>
             Go To SpoTube
           </button>
       </div>

@@ -16,7 +16,7 @@ var oauthStateString = "random"   // 任意の状態文字列
 var spotifyToken *oauth2.Token    // Spotify認証トークンを保持する変数
 
 func main() {
-    if err := godotenv.Load("../.env"); err != nil {
+    if err := godotenv.Load("./.env"); err != nil {
         log.Println("Error loading .env file:", err)
     }
 

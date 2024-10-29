@@ -5,7 +5,7 @@ import TopPage from './pages/TopPage/TopPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MainPage from './pages/MainPage/MainPage';
-
+import SignupPage from './pages/Singup/SingupPage'; 
 const AppContent = () => {
   return (
     <>
@@ -15,6 +15,7 @@ const AppContent = () => {
         <Routes>
           <Route path="/" element={<TopPage />} />
           <Route path="/main" element={<MainPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </main>
       <Footer />

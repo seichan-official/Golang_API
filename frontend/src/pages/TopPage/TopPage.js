@@ -15,7 +15,7 @@ const TopPage = () => {
         <h1 className="main-title">
            <span className="highlight">Welcome To SpoTube!</span> 
         </h1>
-          <button onClick={handleLogin}>
+          <button className='top-page-button' onClick={handleLogin}>
             Go To SpoTube
           </button>
       </div>

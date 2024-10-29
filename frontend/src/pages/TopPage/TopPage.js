@@ -6,7 +6,7 @@ const TopPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/api/spotify/login');
+    navigate('/main');
   }
   
   return (

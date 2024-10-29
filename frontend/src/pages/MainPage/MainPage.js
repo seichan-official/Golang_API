@@ -1,5 +1,6 @@
 import React from "react";
 import data from "../../data.json"; // `src`直下のdata.jsonを指定
+import './MainPage.css';
 
 
 const MainPage = () => {

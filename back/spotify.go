@@ -121,8 +121,8 @@ func HandleUserHistory(w http.ResponseWriter, r *http.Request) {
     }
 
     data := map[string]interface{}{
-        "profile":       profile,
-        "recent_tracks": recentTracks,
+        "user_profile":       profile,
+        "recently_played_tracks": recentTracks,
     }
 
     w.Header().Set("Content-Type", "application/json")

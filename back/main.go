@@ -6,6 +6,7 @@ import (
     "net/http"
 
     "github.com/joho/godotenv"
+    "github.com/rs/cors"
     "golang.org/x/oauth2"
     "golang.org/x/oauth2/spotify"
 )
@@ -35,16 +36,28 @@ func main() {
         },
     }
 
+    c := cors.New(cors.Options{
+        AllowedOrigins:   []string{"http://localhost:3000"}, // フロントエンドのURL
+        AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+        AllowedHeaders:   []string{"Content-Type", "Authorization"},
+        AllowCredentials: false,
+    })
+
+    mux := http.NewServeMux()
     // Spotify APIエンドポイントの設定
-    http.HandleFunc("/api/spotify/login", handleLogin)
-    http.HandleFunc("/callback", handleCallback)
-    http.HandleFunc("/api/spotify/history", HandleUserHistory)
+    mux.HandleFunc("/api/spotify/login", handleLogin)
+    mux.HandleFunc("/callback", handleCallback)
+    mux.HandleFunc("/api/spotify/history", HandleUserHistory)
     // YouTube APIエンドポイントの設定
-    http.HandleFunc("/api/youtube/search", YouTubeSearchHandler)
+    mux.HandleFunc("/api/youtube/search", YouTubeSearchHandler)
+
+
+
+    handler := c.Handler(mux)
 
     // サーバーの起動
     log.Printf("Server started at http://localhost%s/", port)
-    if err := http.ListenAndServe(port, nil); err != nil {
+    if err := http.ListenAndServe(port, handler); err != nil {
         log.Fatal(err)
     }
 }

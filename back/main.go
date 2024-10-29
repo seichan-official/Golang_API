@@ -12,6 +12,7 @@ import (
 
 
 var spotifyConfig *oauth2.Config  // グローバル変数として宣言
+var sessionTokens = make(map[string]*oauth2.Token)
 var oauthStateString = "random"   // 任意の状態文字列
 var spotifyToken *oauth2.Token    // Spotify認証トークンを保持する変数
 

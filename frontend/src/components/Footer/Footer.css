@@ -1,0 +1,18 @@
+/* App全体のスタイル */
+.app-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* ビューポート全体の高さ */
+  }
+  
+  .content {
+    flex: 1; /* Mainコンテンツが残りのスペースを埋める */
+  }
+  
+  footer {
+    background-color: #333; /* 背景色 */
+    color: white; /* 文字色 */
+    text-align: center; /* 中央寄せ */
+    padding: 10px; /* パディング */
+  }
+  

@@ -1,9 +1,19 @@
 .main-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(70deg, #ff7e5f, #feb47b, #9368d0);
-    position: relative;
-    text-align: center;
-  }
+  padding: 20px;
+}
+
+.track-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.track-item {
+  flex: 1 1 calc(25% - 20px); /* 横4つ表示するための幅 */
+  box-sizing: border-box;
+  max-width: calc(25% - 20px); /* 横幅の最大を4つ分で収まるよう調整 */
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}

@@ -5,6 +5,8 @@ import (
     "encoding/json"
     "log"
     "net/http"
+    "fmt"
+    "io/ioutil"
 )
 
 
@@ -61,9 +63,9 @@ func GetUserProfile(client *http.Client) (map[string]string, error) {
 
     if images, ok := result["images"].([]interface{}); ok && len(images) > 0 {
         firstImage := images[0].(map[string]interface{})
-        profile["image_url"] = firstImage["url"].(string)
+        profile["profile_image_url"] = firstImage["url"].(string)
     } else {
-        profile["image_url"] = ""
+        profile["profile_image_url"] = ""
     }
 
     return profile, nil
@@ -85,17 +87,64 @@ func GetUserRecentPlayed(client *http.Client) ([]map[string]interface{}, error) 
     var tracks []map[string]interface{}
     for _, item := range result["items"].([]interface{}) {
         track := item.(map[string]interface{})["track"].(map[string]interface{})
+        album := track["album"].(map[string]interface{})
+        artists := album["artists"].([]interface{})
+        artistsData := []interface{}{}
+        for _, artist := range artists{
+            artistMap := artist.(map[string]interface{})
+            urls := artistMap["external_urls"].(map[string]interface{})
+            spotifyUrl := urls["spotify"].(string)
+            artistName := artistMap["name"].(string)
+            artistId := artistMap["id"].(string)
+            artistImageUrl := GetArtistsImageUrl(client, artistId)
+			artistData := map[string]string{
+				"name": artistName,
+				"spotify_url": spotifyUrl,
+				"smallest_image_url": artistImageUrl,
+			}
+            artistsData = append(artistsData, artistData)
+        }
+        youtubeQuery := fmt.Sprintf("%s [%s] Official Music Video", track["name"].(string), artistsData[0].(map[string]string)["name"])
         trackData := map[string]interface{}{
             "track_name": track["name"].(string),
             "album": map[string]interface{}{
                 "name": track["album"].(map[string]interface{})["name"].(string),
-                "image_url": track["album"].(map[string]interface{})["images"].([]interface{})[0].(map[string]interface{})["url"].(string),
+                "smallest_image_url": track["album"].(map[string]interface{})["images"].([]interface{})[0].(map[string]interface{})["url"].(string),
             },
+            "artists": artistsData,
+            "youtube_search_query": youtubeQuery,
         }
         tracks = append(tracks, trackData)
     }
 
     return tracks, nil
+}
+
+//idからartistsのimgaeUrlをとってくる
+func GetArtistsImageUrl(client *http.Client, id string)(string){
+	url := fmt.Sprintf("https://api.spotify.com/v1/artists/%s", id)
+	resp, err := client.Get(url)
+	if err != nil{
+		return ""
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil{
+		return ""
+	}
+
+	var result map[string] interface{}
+	if err := json.Unmarshal(body, &result); err != nil{
+		return ""
+	}
+	images := result["images"].([]interface{})
+	imageUrl := ""
+	if len(images) > 0{
+		firstImage := images[0].(map[string]interface{})
+		imageUrl = firstImage["url"].(string)		
+	}
+
+	return imageUrl
 }
 
 // トークンと一緒にユーザーの再生履歴を取得するエンドポイント

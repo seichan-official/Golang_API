@@ -4,6 +4,8 @@ import './MainPage.css'
 const baseURL = "http://localhost:8080/api/spotify/history"
 const youtubeURL = "http://localhost:8080/api/youtube/search"
 
+
+
 const MainPage = () => {
   const [post, setData] = useState(null);
 
@@ -38,11 +40,12 @@ const MainPage = () => {
           }
           else{
             const youtubeData = await postResponse.json();
-            value.youtubeURL = youtubeData            
+            value.youtubeURL = youtubeData[0].video_url       
           }
 
   
           console.log("value", value);
+          console.log("youtubeURL", value.youtubeURL)
         }
         setData(spotifyData);
       } catch (error) {
@@ -54,6 +57,10 @@ const MainPage = () => {
   }, []);
 
   if (!post) return <div>Loading...</div>;
+
+  const redirectYoutube = (url) => {
+    window.location.href = url;
+  }
 
   return (
     <div className="main-page">
@@ -74,10 +81,7 @@ const MainPage = () => {
             ))}
             <p>
               YouTube:{" "}
-              <a
-                href={track.youtubeURL}
-              >YouTubeLink
-              </a>
+              <button onClick={() => redirectYoutube(track.youtubeURL)}>YouubeLink</button>
             </p>
           </div>
         ))}

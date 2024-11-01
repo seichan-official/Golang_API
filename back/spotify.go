@@ -6,6 +6,8 @@ import (
     "fmt"
     "log"
     "net/http"
+
+    "github.com/google/uuid"
 )
 
 type UserProfile struct {
@@ -62,7 +64,15 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    spotifyToken = token // グローバル変数にトークンを保存
+    sessionID := uuid.NewString() // 新しいセッションIDを生成
+    sessionTokens[sessionID] = token // トークンをセッションに保存
+    log.Printf("SessionID: %v\n\n", sessionID)
+    log.Printf("token: %v\n\n", token)
+    http.SetCookie(w, &http.Cookie{
+        Name:  "session_id",
+        Value: sessionID,
+        Path:  "/",
+    })
 
     response := map[string]string{
         "message": "認証に成功しました。",
@@ -103,6 +113,22 @@ func GetUserProfile(client *http.Client) (map[string]string, error) {
 
 
 func HandleUserHistory(w http.ResponseWriter, r *http.Request) {
+
+    
+    // セッションIDを取得
+    cookie, err := r.Cookie("session_id")
+    if err != nil || sessionTokens[cookie.Value] == nil {
+        http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
+        return
+    }
+    log.Printf("SessionTokens: %v\n\n", sessionTokens)
+
+
+
+    spotifyToken := sessionTokens[cookie.Value]
+    log.Printf("Cookieから取得したSpotifyToken: %v\n\n", spotifyToken)
+    
+
     if spotifyToken == nil {
         http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
         return

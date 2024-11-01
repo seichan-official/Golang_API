@@ -59,7 +59,7 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
     token, err := spotifyConfig.Exchange(context.Background(), code)
     if err != nil {
         log.Printf("Code exchange failed: %v\n", err)
-        // http.Redirect(w, r, "http://localhost:3000/dashboard", http.StatusTemporaryRedirect)
+        // http.Redirect(w, r, "http://localhost:3000/main", http.StatusTemporaryRedirect)
         http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
         return
     }

@@ -5,7 +5,7 @@ import (
     "fmt"
     "net/http"
     "os"
-
+   
     "google.golang.org/api/googleapi/transport"
     "google.golang.org/api/youtube/v3"
 )
@@ -72,6 +72,7 @@ func YouTubeSearchHandler(w http.ResponseWriter, r *http.Request) {
         http.Error(w, "Invalid request body", http.StatusBadRequest)
         return
     }
+
 
     apiKey := os.Getenv("YOUTUBE_API_KEY")
     if apiKey == "" {

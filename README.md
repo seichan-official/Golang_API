@@ -23,7 +23,7 @@
 ### 🌐 フロントエンド
 - React
 - HTML5
-- CSS (Tailwind CSSなど)
+- CSS
 
 ### 🖥️ バックエンド
 - Go 1.23.2
@@ -49,6 +49,7 @@
 
 #### 🖥️ バックエンドの起動
 ```bash
+cd back
 go run main.go spotify.go youtube.go
 ```
 バックエンドはデフォルトで`http://localhost:8080`で起動します。
@@ -68,11 +69,7 @@ go run main.go spotify.go youtube.go
 
 ### ミュージックビデオ検索
 - 🎶 Spotifyの再生履歴から楽曲情報を取得し、その楽曲に関連するYouTubeのミュージックビデオを表示します！
-
----
-
-## 📜 API ドキュメント
-詳細なAPI仕様はSwaggerを利用して確認できます。  
+ 
 
 ---
 

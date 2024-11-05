@@ -59,26 +59,28 @@ func handleCallback(w http.ResponseWriter, r *http.Request) {
     token, err := spotifyConfig.Exchange(context.Background(), code)
     if err != nil {
         log.Printf("Code exchange failed: %v\n", err)
-        // http.Redirect(w, r, "http://localhost:3000/main", http.StatusTemporaryRedirect)
         http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
         return
     }
 
     sessionID := uuid.NewString() // 新しいセッションIDを生成
     sessionTokens[sessionID] = token // トークンをセッションに保存
-    log.Printf("SessionID: %v\n\n", sessionID)
-    log.Printf("token: %v\n\n", token)
+    // log.Printf("SessionID: %v\n\n", sessionID)
+    // log.Printf("token: %v\n\n", token)
     http.SetCookie(w, &http.Cookie{
         Name:  "session_id",
         Value: sessionID,
         Path:  "/",
+        HttpOnly: true,
     })
 
-    response := map[string]string{
-        "message": "認証に成功しました。",
-    }
-    w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(response)
+    // response := map[string]string{
+    //     "message": "認証に成功しました。",
+    // }
+    // w.Header().Set("Content-Type", "application/json")
+    // json.NewEncoder(w).Encode(response)
+
+    http.Redirect(w, r, "http://localhost:3000/main", http.StatusTemporaryRedirect)
 }
 
 // Spotifyのユーザープロファイルを取得する関数

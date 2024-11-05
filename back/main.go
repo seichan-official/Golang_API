@@ -18,7 +18,7 @@ var oauthStateString = "random"   // 任意の状態文字列
 var spotifyToken *oauth2.Token    // Spotify認証トークンを保持する変数
 
 func main() {
-    if err := godotenv.Load("./.env"); err != nil {
+    if err := godotenv.Load("../.env"); err != nil {
         log.Println("Error loading .env file:", err)
     }
 
@@ -40,9 +40,10 @@ func main() {
     c := cors.New(cors.Options{
         AllowedOrigins:   []string{"http://localhost:3000"}, // フロントエンドのURL
         AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
-        AllowedHeaders:   []string{"Content-Type", "Authorization"},
-        AllowCredentials: false,
+        AllowedHeaders:   []string{"Content-Type", "Authorization", "Cookie"},
+        AllowCredentials: true, // クレデンシャルを許可
     })
+    
 
     mux := http.NewServeMux()
     // Spotify APIエンドポイントの設定

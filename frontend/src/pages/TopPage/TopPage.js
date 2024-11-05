@@ -1,13 +1,8 @@
 import React from 'react';
 import './TopPage.css'; 
-// import { useNavigate } from 'react-router-dom';
 
 const TopPage = () => {
-  // const navigate = useNavigate();
 
-  // const handleLogin = () => {
-  //   navigate('/api/spotify/login');
-  // }
   const redirectLogin = () => {
     window.location.href = "http://localhost:8080/api/spotify/login"
   }

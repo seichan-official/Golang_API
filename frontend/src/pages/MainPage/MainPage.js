@@ -15,7 +15,7 @@ const MainPage = () => {
       try {
         const response = await fetch(baseURL, {
           method: "GET",
-          //credentials: "include",
+          credentials: "include",
         });
         if (!response.ok) {
           throw new Error("GET request failed")
@@ -64,9 +64,9 @@ const MainPage = () => {
 
   return (
     <div className="main-page">
-      <h1>{post.user_profile.display_name}さんの最近再生した曲</h1>
-      <img src={post.user_profile.profile_image_url} alt="User Profile" width="100" />
-      <p>Country: {post.user_profile.country}</p>
+      <h1>{post.profile.display_name}さんの最近再生した曲</h1>
+      <img src={post.profile.profile_image_url} alt="User Profile" width="100" />
+      <p>Country: {post.profile.country}</p>
       <div className="track-list">
         {post.recently_played_tracks.map((track, index) => (
           <div key={index} className="track-item">
@@ -81,14 +81,15 @@ const MainPage = () => {
             ))}
             <p>
               YouTube:{" "}
-              <button onClick={() => redirectYoutube(track.youtubeURL)}>YouubeLink</button>
+              <button onClick={() => redirectYoutube(track.youtubeURL)}>YouTube Link</button>
             </p>
           </div>
         ))}
       </div>
     </div>
-
   );
+  
+
 };
 
 export default MainPage;

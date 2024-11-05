@@ -123,12 +123,12 @@ func HandleUserHistory(w http.ResponseWriter, r *http.Request) {
         http.Redirect(w, r, "/api/spotify/login", http.StatusTemporaryRedirect)
         return
     }
-    log.Printf("SessionTokens: %v\n\n", sessionTokens)
+    // log.Printf("SessionTokens: %v\n\n", sessionTokens)
 
 
 
     spotifyToken := sessionTokens[cookie.Value]
-    log.Printf("Cookieから取得したSpotifyToken: %v\n\n", spotifyToken)
+    // log.Printf("Cookieから取得したSpotifyToken: %v\n\n", spotifyToken)
     
 
     if spotifyToken == nil {
@@ -182,6 +182,7 @@ func HandleUserHistory(w http.ResponseWriter, r *http.Request) {
             artists = append(artists, artist)
         }
 
+        log.Printf("yearch query: %v", item["youtube_search_query"].(string))
         youtubeSearchQuery := item["youtube_search_query"].(string)
 
         track := Track{

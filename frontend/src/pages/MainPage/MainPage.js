@@ -23,7 +23,9 @@ const MainPage = () => {
         const spotifyData = await response.json();
         console.log("spotiy", spotifyData);
         console.log(spotifyData)
+        var i = 0
         for(const value of spotifyData.recently_played_tracks){
+          
           console.log(value.youtube_search_query)
           const postData = {"query": value.youtube_search_query}
 
@@ -46,6 +48,8 @@ const MainPage = () => {
   
           console.log("value", value);
           console.log("youtubeURL", value.youtubeURL)
+          console.log(i)
+          i++
         }
         setData(spotifyData);
       } catch (error) {

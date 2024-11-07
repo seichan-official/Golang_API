@@ -1,27 +1,66 @@
 /* 背景グラデーション */
 .top-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(70deg, #ff7e5f, #feb47b, #9368d0);
-    position: relative;
-    text-align: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(70deg, #ff7e5f, #feb47b, #9368d0);
+  text-align: center;
   
-  /* メインのタイトル */
-  .main-title {
-    font-size: 48px;
-    font-weight: bold; 
-    color: white;
-    margin: 0;
-    padding-bottom: 1em;
+}
+
+.top-page-content {
+  margin-top: 300px;
+  margin-bottom: 0; /* 余白を削除 */
+}
+
+.description-section {
+  margin-top: 0px;
+  margin-bottom: 0; /* 余白を削除 */
+}
+
+
+/* メインタイトルのスタイル */
+.main-title {
+  font-size: 3rem;
+  text-align: center;
+  animation: floatUp 2.5s ease-out forwards;
+  padding-bottom: 5%;
+  margin-top: 90px;
+  margin-bottom: 3px;
+}
+
+/* highlightの光るエフェクト */
+.main-title .highlight {
+  display: inline-block;
+  position: relative;
+  color: #eae7e7;
+  text-shadow: 0 0 8px rgba(130, 56, 150, 0.9), 0 0 20px rgba(255, 111, 97, 0.9);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* floatUpアニメーションのキーフレーム */
+@keyframes floatUp {
+  0% {
+      transform: translateY(30px);
+      opacity: 0;
   }
-  
-  /* ハイライトされた文字 */
-  .highlight {
-    text-decoration: underline;
+  100% {
+      transform: translateY(0);
+      opacity: 1;
   }
+}
+
+/* glowアニメーションのキーフレーム */
+@keyframes glow {
+  from {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 111, 97, 0.7);
+  }
+  to {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 111, 97, 1);
+  }
+}
+
   
   /* Go to SpoTube */
   .top-page-button {
@@ -34,7 +73,8 @@
     letter-spacing: 1.5px;
     text-transform: uppercase;
     font-size: 15px;
-    transition: all 0.5s ease;
+    transition: all 0.7s ease; /* トランジション時間を少し長く */
+    margin-bottom: 450px;
   }
   
   .top-page-button:hover {
@@ -61,3 +101,81 @@
   .consultation-btn{
     text-decoration: none;
   }
+  .description-section {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    margin-top: 0px;
+    margin-bottom: 300px;
+    border-radius: 10px;
+    max-width: 80%;
+    background-color: transparent; /* 背景色を透明に設定 */
+    justify-content: flex-start; /* 左寄せ */
+}
+
+/* Spotifyロゴのスタイルとアニメーション */
+.spotify_logo {
+  width: 250px;
+  height: auto;
+  margin-right: 20px;
+  margin-bottom: 70px;
+  animation: floatUpSpotify 1s ease forwards; /* アニメーションを追加 */
+}
+
+@keyframes floatUpSpotify {
+  0% {
+      transform: translateY(20px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+/* YouTubeロゴのスタイルとアニメーション */
+.youtube_logo {
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+  animation: floatUpYouTube 1s ease forwards; /* アニメーションを追加 */
+  animation-delay: 0.2s; /* 少し遅れて浮かび上がる */
+}
+
+@keyframes floatUpYouTube {
+  0% {
+      transform: translateY(20px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+/* 説明テキスト */
+.description-text {
+  padding-left: 10em;
+  font-size: 1.2rem;
+  color: #555;
+  margin-left: 20px;
+  text-align: left;
+}
+
+.subtitle{
+  padding-bottom: 50px;
+  font-size: 3em;
+}
+
+/* 初期状態 */
+.description-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* 表示されたときの状態 */
+.description-section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,12 +1,13 @@
 .main-page {
-  background-color: #ffffff; /* ホワイトで清潔感を演出 */
-  color: #333; /* ダークグレーのテキストで視認性を高める */
+  background-color: #0a0a0a; /* ホワイトで清潔感を演出 */
+  color: #f2e7e7; /* ダークグレーのテキストで視認性を高める */
   padding: 40px;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  margin-top: 50px;
 }
 
 .track-list {
@@ -21,7 +22,7 @@
 .track-item {
   flex: 1 1 calc(25% - 20px);
   max-width: calc(25% - 20px);
-  background: #f8f9fa; /* ライトグレーで柔らかい印象 */
+  background: #6a6b6c; /* ライトグレーで柔らかい印象 */
   border-radius: 12px;
   padding: 20px;
   text-align: center;
@@ -37,7 +38,7 @@
 
 .track-item h2 {
   font-size: 1.2em;
-  color: #555; /* ミディアムグレーで適度なコントラスト */
+  color: #c9c5c5; /* ミディアムグレーで適度なコントラスト */
   margin-bottom: 10px;
 }
 

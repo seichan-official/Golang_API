@@ -1,0 +1,78 @@
+header {
+    position: fixed; /* 画面上部に固定 */
+    top: 0;
+    width: 100%; /* 画面幅いっぱいに広げる */
+    z-index: 1000; /* 他の要素の前に表示 */
+   
+  }
+  
+  /* タイトル */
+  .header-main-title {
+      text-decoration: none;
+      color: white; /* テキストの色も指定 */
+      
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between; /* 左右に要素を配置 */
+    align-items: center;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px; /* ボタン間に余白を追加 */
+  }
+  
+  /* ハイライトされた文字 */
+  .highlight {
+    text-decoration: underline;
+    color: white;
+  }
+  
+  /* Githubボタン */
+  .github_button {
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    position: relative;
+    background-color: rgb(244, 235, 235);
+    overflow: hidden;
+    margin-top: 6px;
+    margin-right:6px;
+    padding-top: 2px;
+  }
+  
+  .github_button .text {
+    position: absolute;
+    color: rgb(7, 6, 6);
+    width: 120px;
+    font-weight: 600;
+    opacity: 0;
+    transition-duration: 0.4s;
+    padding-left: 35px;
+  }
+  
+  .github_button:hover {
+    width: 110px;
+    transition-duration: 0.4s;
+    border-radius: 30px;
+  }
+  
+  .github_button:hover .text {
+    opacity: 1;
+    transition-duration: 0.4s;
+  }
+  
+  .github_button:hover .svgIcon {
+    opacity: 0;
+    transition-duration: 0.3s;
+  }
+  
+ 

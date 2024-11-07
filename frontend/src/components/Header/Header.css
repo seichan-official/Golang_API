@@ -1,136 +1,9 @@
-/* ログインボタン  */
-.btn-31,
-.btn-31 *,
-.btn-31 :after,
-.btn-31 :before,
-.btn-31:after,
-.btn-31:before {
-  border: 0 solid;
-  box-sizing: border-box;
-}
-
-.btn-31 {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: button;
-  background-color: #000;
-  background-image: none;
-  color: #fff;
-  cursor: pointer;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 100%;
-  font-weight: 900;
-  line-height: 1.5;
-  margin: 0;
-  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
-  padding: 0;
-}
-
-.btn-31:disabled {
-  cursor: default;
-}
-
-.btn-31:-moz-focusring {
-  outline: auto;
-}
-
-.btn-31 svg {
-  display: block;
-  vertical-align: middle;
-}
-
-.btn-31 [hidden] {
-  display: none;
-}
-
-.btn-31 {
-  border-width: 1px;
-  padding: 1rem 2rem;
-  position: relative;
-  text-transform: uppercase;
-  border-radius: 90px;
-}
-
-.btn-31:before {
-  --progress: 100%;
-  background: #fff;
-  -webkit-clip-path: polygon(
-    100% 0,
-    var(--progress) var(--progress),
-    0 100%,
-    100% 100%
-  );
-  clip-path: polygon(
-    100% 0,
-    var(--progress) var(--progress),
-    0 100%,
-    100% 100%
-  );
-  content: "";
-  inset: 0;
-  position: absolute;
-  transition: -webkit-clip-path 0.2s ease;
-  transition: clip-path 0.2s ease;
-  transition: clip-path 0.2s ease, -webkit-clip-path 0.2s ease;
-}
-
-.btn-31:hover:before {
-  --progress: 0%;
-}
-
-.btn-31 .text-container {
-  display: block;
-  overflow: hidden;
-  position: relative;
-}
-
-.btn-31 .text {
-  display: block;
-  font-weight: 900;
-  mix-blend-mode: difference;
-  position: relative;
-}
-
-.btn-31:hover .text {
-  -webkit-animation: move-up-alternate 0.3s ease forwards;
-  animation: move-up-alternate 0.3s ease forwards;
-}
-
-@-webkit-keyframes move-up-alternate {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(80%);
-  }
-
-  51% {
-    transform: translateY(-80%);
-  }
-
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes move-up-alternate {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(80%);
-  }
-
-  51% {
-    transform: translateY(-80%);
-  }
-
-  to {
-    transform: translateY(0);
-  }
+header {
+  position: fixed; /* 画面上部に固定 */
+  top: 0;
+  width: 100%; /* 画面幅いっぱいに広げる */
+  z-index: 1000; /* 他の要素の前に表示 */
+ 
 }
 
 /* タイトル */
@@ -157,25 +30,149 @@
   color: white;
 }
 
-/* Spotifyボタン */
-.Btn {
-padding: 17px 40px;
-border-radius: 50px;
-cursor: pointer;
-border: 0;
-background-color:transparent;
-box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-font-size: 15px;
-transition: all 0.5s ease;
+/* Githubボタン */
+.github_button {
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: relative;
+  background-color: rgb(244, 235, 235);
+  overflow: hidden;
+  margin-top: 6px;
+  margin-right:6px;
+  padding-top: 2px;
 }
 
-.highlight{
-  text-decoration: none;
+.github_button .text {
+  position: absolute;
+  color: rgb(7, 6, 6);
+  width: 120px;
+  font-weight: 600;
+  opacity: 0;
+  transition-duration: 0.4s;
+  padding-left: 35px;
 }
 
-.consultation-btn{
-  text-decoration: none;
+.github_button:hover {
+  width: 110px;
+  transition-duration: 0.4s;
+  border-radius: 30px;
 }
 
+.github_button:hover .text {
+  opacity: 1;
+  transition-duration: 0.4s;
+}
+
+.github_button:hover .svgIcon {
+  opacity: 0;
+  transition-duration: 0.3s;
+}
+
+/* Sign Up ボタン */
+.signup_button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000 !important;
+  color: #fff !important;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  padding: 1rem 2rem;
+  border-radius: 90px; /* ボタンの角丸 */
+  position: relative;
+  text-transform: uppercase;
+  border-width: 1px;
+}
+
+.signup_button:before {
+  --progress: 100%;
+  background: #fff;
+  clip-path: polygon(
+    100% 0,
+    var(--progress) var(--progress),
+    0 100%,
+    100% 100%
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  transition: clip-path 0.2s ease;
+}
+
+.signup_button:hover:before {
+  --progress: 0%;
+}
+
+.signup_button .text-container {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.signup_button .text {
+  display: block;
+  font-weight: 900;
+  mix-blend-mode: difference;
+  position: relative;
+}
+
+.signup_button:hover .text {
+  animation: move-up-alternate 0.3s ease forwards;
+}
+
+.signup_button:hover {
+  border-radius: 90px; /* ホバー時にも角丸を維持 */
+}
+
+.signup_button:before {
+  --progress: 100%;
+  background: #fff;
+  clip-path: polygon(
+    100% 0,
+    var(--progress) var(--progress),
+    0 100%,
+    100% 100%
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  transition: clip-path 0.2s ease;
+  border-radius: 90px; /* 疑似要素にも角丸 */
+}
+
+.signup_button:hover:before {
+  --progress: 0%;
+  border-radius: 90px; /* ホバー時も角丸 */
+}
+
+
+/* アニメーション */
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

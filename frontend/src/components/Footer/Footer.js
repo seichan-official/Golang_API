@@ -1,11 +1,11 @@
 import React from 'react';
-
+import './Footer.css'
 const Footer = () => {
   return (
-    <footer className="mt-5">
+    <footer className="footer-main">
       <div className="container">
         <div className="row">
-          <p className="mx-auto">aaa</p>
+          <p className="mx-auto">Recursion</p>
         </div>
       </div>
     </footer>

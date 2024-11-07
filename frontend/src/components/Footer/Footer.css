@@ -1,18 +1,20 @@
 /* App全体のスタイル */
 .app-content {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* ビューポート全体の高さ */
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ビューポート全体の高さ */
   
-  .content {
-    flex: 1; /* Mainコンテンツが残りのスペースを埋める */
-  }
+}
+
+.content {
+  flex: 1; /* Mainコンテンツが残りのスペースを埋める */
+}
+
+.footer-main {
+  background-color: #333;
+  color: rgb(242, 242, 245);
+  text-align: center;
+  padding: 10px;
   
-  footer {
-    background-color: #333; /* 背景色 */
-    color: white; /* 文字色 */
-    text-align: center; /* 中央寄せ */
-    padding: 10px; /* パディング */
-  }
-  
+}
+

@@ -8,14 +8,9 @@ const SignupPage = () => {
     password: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   return (
     <div className="signup-page">
-      <h2>サインアップは現在開発中となります。 </h2>
+      <h2>サインアップは現在開発中となります。</h2>
       <h2>
           開発完了するまではSpotifyアカウントでお楽しみください。
       </h2>
@@ -24,4 +19,3 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
-

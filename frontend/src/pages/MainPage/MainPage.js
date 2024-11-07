@@ -6,7 +6,7 @@ import './MainPage.css';
 const MainPage = () => {
   return (
     <div className="main-page">
-      <h1>{data.user_profile.display_name}さんの最近再生した曲</h1>
+      <h1 className="prpfile">{data.user_profile.display_name}さんの最近再生した曲</h1>
       <img src={data.user_profile.profile_image_url} alt="User Profile" width="100" />
       <p>Country: {data.user_profile.country}</p>
       <div className="track-list">

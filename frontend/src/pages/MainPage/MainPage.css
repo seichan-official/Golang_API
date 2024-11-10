@@ -1,65 +1,78 @@
-.main-page {
-  background-color: #0a0a0a; /* ホワイトで清潔感を演出 */
-  color: #f2e7e7; /* ダークグレーのテキストで視認性を高める */
-  padding: 40px;
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  margin-top: 50px;
-}
-
-.track-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  max-width: 1200px;
-  margin-top: 30px;
-  justify-content: center;
-}
-
-.track-item {
-  flex: 1 1 calc(25% - 20px);
-  max-width: calc(25% - 20px);
-  background: #6a6b6c; /* ライトグレーで柔らかい印象 */
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-}
-
-.track-item:hover {
-  transform: translateY(-5px); /* ホバーで少し浮かせる */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.track-item h2 {
-  font-size: 1.2em;
-  color: #c9c5c5; /* ミディアムグレーで適度なコントラスト */
-  margin-bottom: 10px;
-}
-
-.track-item img {
-  border-radius: 8px;
-  margin: 10px 0;
-  transition: transform 0.3s ease;
-}
-
-.track-item:hover img {
-  transform: scale(1.05); /* 画像を少し拡大 */
-}
-
-.track-item a {
-  color: #007bff; /* ブルーのリンクで清潔感をプラス */
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.track-item a:hover {
-  color: #0056b3; /* 濃いめのブルー */
-}
-
+  .main-page {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .profile-image {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .track-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .track-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+  }
+  
+  .album-image {
+    width: 50px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  .artist-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .artist-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+  
+  .youtube-info {
+    margin-top: 15px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .youtube-thumbnail {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+  }
+  
+  .youtube-title {
+    font-size: 1.1em;
+    color: #333;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  button {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #17a347;
+  }

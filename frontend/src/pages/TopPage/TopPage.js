@@ -36,7 +36,7 @@ const TopPage = () => {
   const handleLogin = () => {
     navigate('/main');
   };
-  
+
   return (
     <div className="top-page">
       {/* トップページのセクション */}

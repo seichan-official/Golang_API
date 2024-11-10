@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './MainPage_Header.css';
+import './MainPageHeader.css';
 
 const Header = () => {
   return (
+    
     <header>
       <div className="bg-dark text-white py-2">
         <div className="container">

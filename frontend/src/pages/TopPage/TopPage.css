@@ -24,6 +24,7 @@
 .main-title {
   font-size: 3rem;
   text-align: center;
+  text-decoration: none;
   animation: floatUp 2.5s ease-out forwards;
   padding-bottom: 5%;
   margin-top: 90px;
@@ -37,6 +38,7 @@
   color: #eae7e7;
   text-shadow: 0 0 8px rgba(130, 56, 150, 0.9), 0 0 20px rgba(255, 111, 97, 0.9);
   animation: glow 2s ease-in-out infinite alternate;
+  text-decoration: none;
 }
 
 /* floatUpアニメーションのキーフレーム */
@@ -162,9 +164,16 @@
   text-align: left;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 .subtitle{
   padding-bottom: 50px;
   font-size: 3em;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.explanation {
+  padding-left: 30px;
+  font-family: impact;
 }
 
 /* 初期状態 */

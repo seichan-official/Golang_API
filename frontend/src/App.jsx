@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TopPage from './pages/TopPage/TopPage'; 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import MainPage_Header from './components/Header/MainPage_Header';
+import MainPageHeader from './components/Header/MainPageHeader';
 import MainPage from './pages/MainPage/MainPage';
 import SignupPage from './pages/Singup/SingupPage'; 
 
@@ -16,7 +16,7 @@ const AppContent = () => {
     if (location.pathname === '/') {
       return <Header />;
     } else if (location.pathname === '/main') {
-      return <MainPage_Header />;
+      return <MainPageHeader />;
     } else {
       return <Header />;
     }

@@ -14,22 +14,24 @@ const TopPage = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsDescriptionVisible(true);
-          observer.unobserve(entry.target); // 一度アニメーションが起動したら監視を終了
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.75} // 50%が表示されたら表示
+      { threshold: 0.75 }
     );
 
-    if (descriptionRef.current) {
-      observer.observe(descriptionRef.current);
+    const currentRef = descriptionRef.current; // refをローカル変数にコピー
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (descriptionRef.current) {
-        observer.unobserve(descriptionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef); // クリーンアップでcurrentRefを使用
       }
     };
-  }, []);
+  }, []); // 依存配列を空にすることで、一度だけ実行
 
   const handleLogin = () => {
     navigate('/main');
@@ -58,7 +60,7 @@ const TopPage = () => {
         </div>
         <div className="description-text">
           <h2 className='subtitle'>What is SpoTube?</h2>
-          <p>SpoTubeは、Spotifyで聞いた曲の履歴を元にMVを表示させるアプリです。</p>
+          <p className='explanation'>SpoTubeは、Spotifyで聞いた曲の履歴を元にMVを表示させるサービスです。</p>
         </div>
       </section>
     </div>

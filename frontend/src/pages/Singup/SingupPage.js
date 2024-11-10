@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SingupPage.css'; // CSSファイルをインポート
 
 const SignupPage = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  // const [formData, setFormData] = useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  // });
 
   return (
     <div className="signup-page">
